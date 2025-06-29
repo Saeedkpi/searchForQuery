@@ -1,0 +1,128 @@
+//////For HTML Page Popup Alert Box for signin / signup /////
+
+onsubmit="clickAlert()"
+
+// for Script
+<script>
+        function clickAlert() {
+            alert("Hello, Are you sure?");
+        }
+</script>
+
+////// For HTML Page Date Time //////
+
+<p id="currentDateTime"></p>
+
+////// For JavaScript //////
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    function updateDateTime() {
+        const now = new Date();
+        const options = { 
+            weekday: 'long', 
+            year: 'numeric', 
+            month: 'long', 
+            day: 'numeric', 
+            hour: '2-digit', 
+            minute: '2-digit', 
+            second: '2-digit' 
+        };
+        const formattedDateTime = now.toLocaleDateString('en-US', options);
+        document.getElementById('currentDateTime').textContent = formattedDateTime;
+    }
+ 
+    // Call the function once immediately to display the time on page load
+    updateDateTime();
+ 
+    // Update the time every second
+    setInterval(updateDateTime, 1000); 
+});
+</script>
+
+////// for checkout page html //////
+    <!-- checkout page start -->
+    <section class="container py-4">
+        <h2 class="text-center">
+            <span class="border border-3 border-dark border-start-0 border-end-0 border-top-0">Checkout Page</span>
+        </h2>
+        <div class="row gy-4">
+            <div class="col-lg-8">
+                <div class="row align-items-center checkout-details border">
+                    <div class="col-3">
+                        <img src="images/product-1.webp" alt="" class="img-fluid">
+                    </div>
+                    <div class="col-4">
+                        <h4>সময় অসময়ের মুক্তিযুদ্ধ</h4>
+                        <p>জ্যোতিপ্রকাশ দত্ত</p>
+                    </div>
+                    <div class="col-3">
+                        <form action="" class="d-flex">
+        <button type="button" class="btn btn-outline-info" onclick="decrement()">-</button>
+        <input type="text" name="quantity" id="quantity" class="form-control  text-center">
+        <button type="button"  class="btn btn-outline-info" onclick="increment()">+</button>
+                        </form>
+                    </div>
+                    <div class="col-2">
+                         <p> <span id="price">200</span> BDT</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="checkout-summary">
+                    <table class="table">
+                        <tr>
+                            <td>Subtotal</td>
+                            <td><span id="subTotal">200</span> TK</td>
+                        </tr>
+                        <tr>
+                            <td>Delivery Fee</td>
+                            <td><span id="deliveryCharge">50</span> TK</td>
+                        </tr>
+                        <tr>
+                            <td>Payable Total</td>
+                            <td><span id="totalPayable">265</span> TK</td>
+                        </tr>
+                    </table>
+                    <a href="" class="btn btn-outline-success d-block w-100">Order Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- checkout page end -->
+
+////// For Javascript //////
+<script>
+        // for checkout page
+        let data =  1;
+
+        //get amount
+        let getPrice =  document.getElementById('price').innerHTML;  
+        let getDeliveryCharge =  document.getElementById('deliveryCharge').innerHTML;  
+
+        //insert quantity in input field
+        document.getElementById('quantity').value = data;
+
+        //creation of increment function
+        function increment() {
+            data = data + 1;
+            document.getElementById('quantity').value = data;
+            
+            document.getElementById('price').innerHTML = (data * getPrice);  
+            document.getElementById('subTotal').innerHTML = (data * getPrice);           
+            document.getElementById('totalPayable').innerHTML = (data * getPrice) + parseInt(getDeliveryCharge);          
+        }
+
+        //creation of decrement function
+        function decrement() {
+            if(data > 1){
+                data = data - 1;
+                document.getElementById('quantity').value = data;
+
+                document.getElementById('price').innerHTML = (data * getPrice);  
+                document.getElementById('subTotal').innerHTML = (data * getPrice);           
+                document.getElementById('totalPayable').innerHTML = (data * getPrice) + parseInt(getDeliveryCharge); 
+            }else{
+                alert('please insert value greater than one');
+            } 
+        }
+    </script>
